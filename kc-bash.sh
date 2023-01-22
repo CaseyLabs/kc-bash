@@ -73,5 +73,10 @@ myPublicIP() {
 
 # Find and replace text in a file: replace originalText newText /path/to/file.txt
 replace() {
-  perl -i -pe"s/$1/$2/g" $3
+  if [[ $# -lt 3 ]] ; then
+    echo "Invalid options. Usage: replace originalText newText /path/to/file.txt"
+    return 1
+  fi
+
+  perl -i -pe"s/$1/$2/g" "$3"
 }
