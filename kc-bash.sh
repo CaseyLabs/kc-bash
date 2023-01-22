@@ -9,6 +9,11 @@
 # Get location where this script runs from:
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
+# check if we are running as root; if not, enable sudo as an option:
+SUDO=''
+if (( $EUID != 0 )); then
+  SUDO='sudo'
+fi
 
 # Functions
 # ---------
@@ -20,8 +25,7 @@ msg() {
 
 # check if directory exists: dirExists /path/to/myDir
 dirExists() {
-  if [[ -d "$1" ]]
-  then
+  if [[ -d "$1" ]]; then
     msg "[Info] Directory ($1) exists."
     return 0
   else
@@ -32,8 +36,7 @@ dirExists() {
 
 # check if file exists: fileExists /path/to/myFile
 fileExists() {
-  if [[ -f "$1" ]]
-  then
+  if [[ -f "$1" ]]; then
     msg "[Info] File ($1) exists."
     return 0
   else
@@ -44,21 +47,14 @@ fileExists() {
 
 # install a system package: get package1 package2 package3
 get() {
-
-  # check if we need sudo access:
-  SUDO=''
-  if (( $EUID != 0 )); then
-    SUDO='sudo'
-  fi
-
   if command -v apt-get; then
     if [ -z "$(find /var/cache/apt/pkgcache.bin -mmin -60)" ]; then
       $SUDO apt-get update
     fi
-    $SUDO apt-get install -y $@
+    $SUDO apt-get install -y "$@"
     $SUDO apt-get -y autoremove
     $SUDO apt-get clean
   elif command -v yum; then
-    $SUDO yum install -y $@
+    $SUDO yum install -y "$@"
   fi
 }
