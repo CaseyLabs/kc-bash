@@ -99,3 +99,8 @@ replace() {
 awsaccount() {
   echo $(aws sts get-caller-identity --query \"Account\" --output text)
 }
+
+# List RUNNING services
+services() {
+  $SUDO service --status-all | grep -i +
+}
