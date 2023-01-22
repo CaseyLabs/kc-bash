@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
-# Usage:
+# Usage
+# ------
 # . <(curl -s https://raw.githubusercontent.com/CaseyLabs/kc-bash/main/kc-bash.sh)
 
+# Vars
+# ----
+# Get location where this script runs from:
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-msg() {
-  echo >&2 -e "${1-}"
-}
 
 # Functions
 # ---------
 
+# Send logging output to stderr:
+msg() {
+  echo >&2 -e "${1-}"
+}
+
+# check if directory exists: dirExists /path/to/myDir
 dirExists() {
   if [[ -d "$1" ]]
   then
@@ -23,6 +30,7 @@ dirExists() {
   fi
 }
 
+# check if file exists: fileExists /path/to/myFile
 fileExists() {
   if [[ -f "$1" ]]
   then
@@ -31,5 +39,26 @@ fileExists() {
   else
     msg "[Error] File ($1) does NOT exist."
     return 1
+  fi
+}
+
+# install a system package: get package1 package2 package3
+get() {
+
+  # check if we need sudo access:
+  SUDO=''
+  if (( $EUID != 0 )); then
+    SUDO='sudo'
+  fi
+
+  if command -v apt-get; then
+    if [ -z "$(find /var/cache/apt/pkgcache.bin -mmin -60)" ]; then
+      $SUDO apt-get update
+    fi
+    $SUDO apt-get install -y $@
+    $SUDO apt-get -y autoremove
+    $SUDO apt-get clean
+  elif command -v yum; then
+    $SUDO yum install -y $@
   fi
 }
