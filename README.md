@@ -1,8 +1,8 @@
-# CaseyBash
+# kc-bash
 
 A personal Bash helper function script. Not publicly supported or for production use.
 
-## Add CaseyBash to a script:
+## Add kc-bash to a script:
 
 ```
 #!/usr/bin/env bash
