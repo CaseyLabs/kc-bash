@@ -21,3 +21,5 @@ KC_VERSION="0.0.1"
 | dirExists  | Checks if a directory exists | `dirExists /etc/ `       |
 | fileExists | Checks if a file exists      | `fileExists /etc/passwd` |
 | get        | Installs a system package    | `get curl wget gcc`      |
+| myIP       | Prints your internal IP      | `myIP`                   |
+| myPublicIP | Prints your external IP      | `myPublicIP`             |

@@ -58,3 +58,13 @@ get() {
     $SUDO yum install -y "$@"
   fi
 }
+
+# prints internal IP address
+myIP() {
+  hostname -I | awk '{print $1}'
+}
+
+# prints external IP address
+myPublicIP() {
+  curl -s ifconfig.me
+}
