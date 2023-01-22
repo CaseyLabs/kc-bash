@@ -25,8 +25,8 @@ msg() {
   echo >&2 -e "${1-}"
 }
 
-# check if directory exists: dirExists /path/to/myDir
-dirExists() {
+# check if directory exists: checkdir /path/to/myDir
+checkdir() {
   if [[ -d "$1" ]]; then
     msg "[Info] Directory ($1) exists."
     return 0
@@ -36,8 +36,8 @@ dirExists() {
   fi
 }
 
-# check if file exists: fileExists /path/to/myFile
-fileExists() {
+# check if file exists: checkfile /path/to/myFile
+checkfile() {
   if [[ -f "$1" ]]; then
     msg "[Info] File ($1) exists."
     return 0
@@ -62,12 +62,12 @@ get() {
 }
 
 # prints internal IP address
-myIP() {
+myip() {
   hostname -I | awk '{print $1}'
 }
 
 # prints external IP address
-myPublicIP() {
+mypublicip() {
   curl -s ifconfig.me
 }
 
@@ -79,4 +79,9 @@ replace() {
   fi
 
   perl -i -pe"s/$1/$2/g" "$3"
+}
+
+# prints the AWS account your terminal is logged into
+awsaccount() {
+  echo $(aws sts get-caller-identity --query \"Account\" --output text)
 }

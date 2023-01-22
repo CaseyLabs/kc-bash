@@ -18,9 +18,10 @@ KC_VERSION="0.0.1"
 
 | Command    | Description                  | Example                  |
 |------------|------------------------------|--------------------------|
-| dirExists  | Checks if a directory exists | `dirExists /etc/ `       |
-| fileExists | Checks if a file exists      | `fileExists /etc/passwd` |
+| checkdir   | Checks if a directory exists | `checkdir /etc/ `        |
+| checkfile  | Checks if a file exists      | `checkfile /etc/passwd`  |
 | get        | Installs a system package    | `get curl wget gcc`      |
-| myIP       | Prints your internal IP      | `myIP`                   |
-| myPublicIP | Prints your external IP      | `myPublicIP`             |
+| myip       | Prints your internal IP      | `myip`                   |
+| mypublicip | Prints your external IP      | `mypublicip`             |
 | replace    | Finds and replaces text in file | `replace originalText newText /path/to/file.txt` |
+| awsaccount | Prints the AWS account you are logged into | `awsaccount` |
