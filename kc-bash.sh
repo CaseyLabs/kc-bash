@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# Usage
+# USAGE
 # ------
 # . <(curl -s https://raw.githubusercontent.com/CaseyLabs/kc-bash/main/kc-bash.sh)
 
-# Vars
+
+# VARS
 # ----
 # Get location where this script runs from:
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
@@ -15,7 +16,8 @@ if (( $EUID != 0 )); then
   SUDO='sudo'
 fi
 
-# Functions
+
+# FUNCTIONS
 # ---------
 
 # Send logging output to stderr:
@@ -67,4 +69,9 @@ myIP() {
 # prints external IP address
 myPublicIP() {
   curl -s ifconfig.me
+}
+
+# Find and replace text in a file: replace originalText newText /path/to/file.txt
+replace() {
+  perl -i -pe"s/$1/$2/g" $3
 }

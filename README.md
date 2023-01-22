@@ -23,3 +23,4 @@ KC_VERSION="0.0.1"
 | get        | Installs a system package    | `get curl wget gcc`      |
 | myIP       | Prints your internal IP      | `myIP`                   |
 | myPublicIP | Prints your external IP      | `myPublicIP`             |
+| replace    | Finds and replaces text in file | `replace originalText newText /path/to/file.txt` |
