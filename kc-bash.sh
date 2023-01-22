@@ -47,7 +47,7 @@ checkfile() {
   fi
 }
 
-# install a system package: get package1 package2 package3
+# install a system package (Linux): get package1 package2 package3
 get() {
   if command -v apt-get; then
     if [ -z "$(find /var/cache/apt/pkgcache.bin -mmin -60)" ]; then
@@ -58,6 +58,20 @@ get() {
     $SUDO apt-get clean
   elif command -v yum; then
     $SUDO yum install -y "$@"
+  fi
+}
+
+# upgrades all system packages (Linux only)
+upgrade() {
+  if command -v apt-get; then
+    if [ -z "$(find /var/cache/apt/pkgcache.bin -mmin -60)" ]; then
+      $SUDO apt-get update
+    fi
+    $SUDO apt-get upgrade -y
+    $SUDO apt-get -y autoremove
+    $SUDO apt-get clean
+  elif command -v yum; then
+    $SUDO yum upgrade -y
   fi
 }
 

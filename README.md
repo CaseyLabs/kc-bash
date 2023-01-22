@@ -16,12 +16,13 @@ KC_VERSION="0.0.1"
 
 ## Available functions:
 
-| Command    | Description                  | Example                  |
-|------------|------------------------------|--------------------------|
-| checkdir   | Checks if a directory exists | `checkdir /etc/ `        |
-| checkfile  | Checks if a file exists      | `checkfile /etc/passwd`  |
-| get        | Installs a system package    | `get curl wget gcc`      |
-| myip       | Prints your internal IP      | `myip`                   |
-| mypublicip | Prints your external IP      | `mypublicip`             |
-| replace    | Finds and replaces text in file | `replace originalText newText /path/to/file.txt` |
-| awsaccount | Prints the AWS account you are logged into | `awsaccount` |
+| Command    | Description                                | Example                  |
+|------------|--------------------------------------------|--------------------------|
+| checkdir   | Checks if a directory exists               | `checkdir /etc/ `        |
+| checkfile  | Checks if a file exists                    | `checkfile /etc/passwd`  |
+| get        | Installs a Linux system package            | `get curl wget gcc`      |
+| upgrade    | Upgrades all Linux system packages         | `upgrade`                |
+| myip       | Prints your internal IP                    | `myip`                   |
+| mypublicip | Prints your external IP                    | `mypublicip`             |
+| replace    | Finds and replaces text in file            | `replace originalText newText /path/to/file.txt` |
+| awsaccount | Prints the AWS account you are logged into | `awsaccount`             |
