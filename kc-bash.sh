@@ -8,7 +8,7 @@
 # VARS
 # ----
 # Get location where this script runs from:
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+KC_SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 # check if we are running as root; if not, enable sudo as an option:
 SUDO=''
@@ -19,6 +19,10 @@ fi
 
 # FUNCTIONS
 # ---------
+
+# Notes:
+#    $# = number of passed in arguments
+# 
 
 # Send logging output to stderr:
 msg() {
@@ -77,18 +81,20 @@ upgrade() {
 
 # prints internal IP address
 myip() {
-  hostname -I | awk '{print $1}'
+  kc_private_ip=$(hostname -I | awk '{print $1}')
+  msg "${kc_private_ip}"
 }
 
 # prints external IP address
 mypublicip() {
-  curl -s ifconfig.me
+  kc_public_ip=$(curl -s ifconfig.me)
+  msg "${kc_public_ip}"
 }
 
-# Find and replace text in a file: replace originalText newText /path/to/file.txt
+# Find and replace text in a file | replace originalText newText /path/to/file.txt
 replace() {
   if [[ $# -lt 3 ]] ; then
-    echo "Invalid options. Usage: replace originalText newText /path/to/file.txt"
+    msg "[Error] Invalid options. Usage: replace originalText newText /path/to/file.txt"
     return 1
   fi
 
@@ -97,10 +103,31 @@ replace() {
 
 # prints the AWS account your terminal is logged into
 awsaccount() {
-  echo $(aws sts get-caller-identity --query \"Account\" --output text)
+  kc_aws_account=$(aws sts get-caller-identity --query \"Account\" --output text)
+  if [ -n "${kc_aws_account}" ]; then
+    msg "[Info] Current AWS account ID: ${kc_aws_account}"
+    return 0
+  else
+    msg "[Error] Current AWS account not detected."
+    return 1
+  fi
 }
 
 # List RUNNING services
 services() {
   $SUDO service --status-all | grep -i +
+}
+
+# Uncompress .tar.gz file | unzipg sourceFile [destination]
+function unzipg {
+  if [[ $# -lt 1 ]] ; then
+    msg "[Error] Insufficient arguments | Usage: unzipg sourceFile [destination] | Example: unzipg myFile.tar.gz ."
+    return 1
+  elif [[ $# -lt 2 ]] ; then
+    set -- "$1" "." # sets to current directory
+  elif ! checkDir $1; then
+    mkdir -p $1
+  fi
+    tar -xvf "$1" "$2"
+    return 0
 }

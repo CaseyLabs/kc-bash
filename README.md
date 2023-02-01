@@ -27,3 +27,4 @@ KC_VERSION="0.0.1"
 | replace    | Finds and replaces text in file            | `replace originalText newText /path/to/file.txt` |
 | awsaccount | Prints the AWS account you are logged into | `awsaccount`             |
 | services   | Prints RUNNING services on system          | `services`               |
+| unzipg     | uncompresses a tar/gzip file               | `unzipg myFile.tar.gz /destination/path` |
