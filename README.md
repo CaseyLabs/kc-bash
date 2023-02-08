@@ -18,6 +18,7 @@ KC_VERSION="0.0.1"
 
 | Command    | Description                                | Example                  |
 |------------|--------------------------------------------|--------------------------|
+| checkapp   | Check if an application exists             | `checkapp myAppName`     |
 | checkdir   | Checks if a directory exists               | `checkdir /etc/ `        |
 | checkfile  | Checks if a file exists                    | `checkfile /etc/passwd`  |
 | get        | Installs a Linux system package            | `get curl wget gcc`      |

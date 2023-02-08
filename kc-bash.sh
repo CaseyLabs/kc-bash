@@ -51,6 +51,14 @@ checkfile() {
   fi
 }
 
+# check if applicaiton is available on PATH:
+checkApp() {
+  if command -v $1; then
+    return 0
+  else
+    return 1
+}
+
 # install a system package (Linux): get package1 package2 package3
 get() {
   if command -v apt-get; then
