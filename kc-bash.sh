@@ -52,7 +52,7 @@ checkfile() {
 }
 
 # check if applicaiton is available on PATH:
-checkApp() {
+checkapp() {
   if command -v "$1"; then
     return 0
   else
