@@ -54,8 +54,10 @@ checkfile() {
 # check if applicaiton is available on PATH:
 checkapp() {
   if command -v "$1"; then
+    msg "[Info] $1 exists."
     return 0
   else
+    msg "[Info] $1 does NOT exist."
     return 1
   fi
 }
