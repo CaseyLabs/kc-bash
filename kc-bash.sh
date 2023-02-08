@@ -53,7 +53,7 @@ checkfile() {
 
 # check if applicaiton is available on PATH:
 checkApp() {
-  if command -v $1; then
+  if command -v "$1"; then
     return 0
   else
     return 1
@@ -134,8 +134,8 @@ function unzipg {
     return 1
   elif [[ $# -lt 2 ]] ; then
     set -- "$1" "." # sets to current directory
-  elif ! checkDir $1; then
-    mkdir -p $1
+  elif ! checkDir "$1"; then
+    mkdir -p "$1"
   fi
     tar -xvf "$1" "$2"
     return 0
