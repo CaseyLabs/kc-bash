@@ -22,7 +22,7 @@ fi
 
 # Notes:
 #    $# = number of passed in arguments
-# 
+#
 
 # Send logging output to stderr:
 msg() {
@@ -57,6 +57,7 @@ checkApp() {
     return 0
   else
     return 1
+  fi
 }
 
 # install a system package (Linux): get package1 package2 package3
