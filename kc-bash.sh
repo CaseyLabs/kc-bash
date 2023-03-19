@@ -71,6 +71,7 @@ get() {
     $SUDO apt-get install -y "$@"
     $SUDO apt-get -y autoremove
     $SUDO apt-get clean
+    if checkfile /var/run/reboot-required; then cat /var/run/reboot-required; fi
   elif command -v yum; then
     $SUDO yum install -y "$@"
   fi
@@ -85,6 +86,7 @@ upgrade() {
     $SUDO apt-get upgrade -y
     $SUDO apt-get -y autoremove
     $SUDO apt-get clean
+    checkfile /var/run/reboot-required
   elif command -v yum; then
     $SUDO yum upgrade -y
   fi
