@@ -144,3 +144,10 @@ function unzipg {
     tar -xvf "$1" "$2"
     return 0
 }
+
+
+function ecrlogin() {
+  thisAccount=$(aws sts get-caller-identity --output json | jq -r .Account)
+  thisRegion=$(aws configure get region)
+  aws ecr get-login-password --region ${thisRegion} | docker login --username AWS --password-stdin ${thisAccount}.dkr.ecr.${thisRegion}.amazonaws.com
+}

@@ -21,6 +21,7 @@ KC_VERSION="0.0.1"
 | checkapp   | Check if an application exists             | `checkapp myAppName`     |
 | checkdir   | Checks if a directory exists               | `checkdir /etc/ `        |
 | checkfile  | Checks if a file exists                    | `checkfile /etc/passwd`  |
+| ecrlogin   | Logs into the current AWS ECR account.     | `ecrlogin`               |
 | get        | Installs a Linux system package            | `get curl wget gcc`      |
 | upgrade    | Upgrades all Linux system packages         | `upgrade`                |
 | myip       | Prints your internal IP                    | `myip`                   |
