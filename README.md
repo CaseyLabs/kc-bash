@@ -19,6 +19,7 @@ KC_VERSION="0.0.1"
 | Command    | Description                                | Example                  |
 |------------|--------------------------------------------|--------------------------|
 | awsaccount | Prints the AWS account you are logged into | `awsaccount`             |
+| awsprofile | Sets the AWS CLI profile to use            | `awsprofile myAccount`   |
 | checkapp   | Check if an application exists             | `checkapp myAppName`     |
 | checkdir   | Checks if a directory exists               | `checkdir /etc/ `        |
 | checkfile  | Checks if a file exists                    | `checkfile /etc/passwd`  |

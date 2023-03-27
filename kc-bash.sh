@@ -29,6 +29,11 @@ msg() {
   echo >&2 -e "${1-}"
 }
 
+# set AWS profile
+awsprofile() {
+  export AWS_PROFILE=$1
+}
+
 # check if directory exists: checkdir /path/to/myDir
 checkdir() {
   if [[ -d "$1" ]]; then
