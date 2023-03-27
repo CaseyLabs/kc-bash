@@ -18,15 +18,16 @@ KC_VERSION="0.0.1"
 
 | Command    | Description                                | Example                  |
 |------------|--------------------------------------------|--------------------------|
+| awsaccount | Prints the AWS account you are logged into | `awsaccount`             |
 | checkapp   | Check if an application exists             | `checkapp myAppName`     |
 | checkdir   | Checks if a directory exists               | `checkdir /etc/ `        |
 | checkfile  | Checks if a file exists                    | `checkfile /etc/passwd`  |
 | ecrlogin   | Logs into the current AWS ECR account.     | `ecrlogin`               |
 | get        | Installs a Linux system package            | `get curl wget gcc`      |
-| upgrade    | Upgrades all Linux system packages         | `upgrade`                |
+| installdeb | Installs a .deb from a URL                 | `installdeb https://my.com` |
 | myip       | Prints your internal IP                    | `myip`                   |
 | mypublicip | Prints your external IP                    | `mypublicip`             |
 | replace    | Finds and replaces text in file            | `replace originalText newText /path/to/file.txt` |
-| awsaccount | Prints the AWS account you are logged into | `awsaccount`             |
 | services   | Prints RUNNING services on system          | `services`               |
 | unzipg     | uncompresses a tar/gzip file               | `unzipg myFile.tar.gz /destination/path` |
+| upgrade    | Upgrades all Linux system packages         | `upgrade`                |

@@ -92,6 +92,12 @@ upgrade() {
   fi
 }
 
+# install deb file from a URL:
+installdeb() {
+  wget -O temp.deb "$1" &&
+  sudo dpkg -i temp.deb
+  rm -f temp.deb
+}
 # prints internal IP address
 myip() {
   kc_private_ip=$(hostname -I | awk '{print $1}')
